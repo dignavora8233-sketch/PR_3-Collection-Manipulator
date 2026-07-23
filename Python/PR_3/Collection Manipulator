@@ -119,7 +119,9 @@ while True:
         print("Exiting program. Goodbye!")
         break
     
+    else:
 
+        print("Invalid Choice! Please enter a number between 1 and 6.")
             
     
         
