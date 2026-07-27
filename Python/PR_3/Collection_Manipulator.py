@@ -9,19 +9,18 @@ print("*"*60)
 print("Select an Option:")
 
 while True:
-    print("\n1.Add Student")
-    print("2.Display All Students")
-    print("3.Update student Information")
-    print("4.Delate Student")
-    print("5.Display Subject Offered")
-    print("6.Exit")
+  print("\n1.Add Student")
+  print("2.Display All Students")
+  print("3.Update student Information")
+  print("4.Delate Student")
+  print("5.Display Subject Offered")
+  print("6.Exit")
 
-
-    choice = input("Enter your choice: ")
+  choice = input("Enter your choice: ")
 
     #-----ADD STUDENT-----#
 
-    if choice == "1":
+  if choice == "1":
 
        std_id = input("Enter Student ID: ")
        
@@ -35,7 +34,15 @@ while True:
 
        if not found:
           name = input("Enter Name: ")
-          age = int(input("Enter Age: "))
+          
+          try:
+              age = int(input("Enter Age: "))
+              if age <= 0:
+                  print("Age must be positive.")
+                  continue
+          except ValueError:
+                    print("Please enter a valid age.")
+                    continue
           grade = input("Enter Grade:")
           dob = input("Enter DOB (DD MM YYYY): ").split()
           dob = tuple(dob)
@@ -51,13 +58,13 @@ while True:
                }
           
           students.append(student)
-          print("Student Added Successfully.")
+          print("\nStudent Added Successfully.")
 
           print(students)
 
     #----------DISPLAY----------#
     
-    elif choice == "2":
+  elif choice == "2":
 
         print("\n---Display All Students---")
         
@@ -66,7 +73,7 @@ while True:
             
         else:
             for student in students:
-                
+                print("-"*50) 
                 print(f"""
                       Student ID   :  {student['ID']}
                       Name         :  {student['Name']}
@@ -75,45 +82,57 @@ while True:
                       DOB          :  {student['DOB']}
                       Subjects     :  {student['Subjects']}
                       """)
+                print("-"*50)
 
     #----------UPDATE----------#
 
-    elif choice == "3":
+  elif choice == "3":
 
-      serach_id = input("\nEnter Student ID to Update:")
+    search_id = input("\nEnter Student ID to Update: ")
 
-      for student in students:
-            if student ["ID"] == serach_id:
-               student ["Name"] = input("Enter New Name:")
-               student ["Grade"] = input("Enter New Grade:")
-               student ["DOB"] = input("Enter New DOB:")
-               
-               print("Update Successfuly!!")
-               
-               break
+    found = False
 
-            else:
-                print("student not found!!")
+    for student in students:
+
+        if student["ID"] == search_id:
+
+            student["Name"] = input("Enter New Name: ")
+            student["Grade"] = input("Enter New Grade: ")
+            student["DOB"] = tuple(input("Enter New DOB (DD MM YYYY): ").split())
+
+            print("Student Updated Successfully!")
+
+            found = True
+            break
+
+    if not found:
+        print("Student not found!")
 
     #----------DELETE----------#
 
-    elif choice == "4":
+  elif choice == "4":
 
-        serach_id = input ("\nEnter ID to delete:")
+    search_id = input("\nEnter ID to Delete: ")
 
-        for student in students:
-            if student ["ID"] == serach_id:
-                students.remove(student)
+    found = False
 
-                print("Delete Successfuly!")
+    for student in students:
 
-                break
+        if student["ID"] == search_id:
 
-            else:
-                print("Student not found!")
+            students.remove(student)
+
+            print("Student Deleted Successfully!")
+
+            found = True
+            break
+
+    if not found:
+        print("Student not found!")
 
     #----------SUBJECTS----------#
-    elif choice == "5":
+        
+  elif choice == "5":
 
         print("\n--- Display Subjects Offered ---")
 
@@ -129,7 +148,7 @@ while True:
 
     #----------EXIT-----------#
     
-    elif choice == "6":
+  elif choice == "6":
         
         print("Thsnk you for using Student Data Organizer.")
 
@@ -138,7 +157,7 @@ while True:
 
     #----------INVALID----------#
     
-    else:
+  else:
 
         print("Invalid Choice! Please enter a number between 1 and 6.")
             
