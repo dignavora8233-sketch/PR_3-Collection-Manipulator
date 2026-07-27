@@ -2,7 +2,9 @@
 
 students = []
 
+print("*"*60)
 print("Welcome to the student Data Organizer!!")
+print("*"*60)
 
 print("Select an Option:")
 
@@ -16,6 +18,8 @@ while True:
 
 
     choice = input("Enter your choice: ")
+
+    #-----ADD STUDENT-----#
 
     if choice == "1":
 
@@ -50,6 +54,8 @@ while True:
           print("Student Added Successfully.")
 
           print(students)
+
+    #----------DISPLAY----------#
     
     elif choice == "2":
 
@@ -60,6 +66,7 @@ while True:
             
         else:
             for student in students:
+                
                 print(f"""
                       Student ID   :  {student['ID']}
                       Name         :  {student['Name']}
@@ -69,6 +76,8 @@ while True:
                       Subjects     :  {student['Subjects']}
                       """)
 
+    #----------UPDATE----------#
+
     elif choice == "3":
 
       serach_id = input("\nEnter Student ID to Update:")
@@ -76,6 +85,7 @@ while True:
       for student in students:
             if student ["ID"] == serach_id:
                student ["Name"] = input("Enter New Name:")
+               student ["Grade"] = input("Enter New Grade:")
                student ["DOB"] = input("Enter New DOB:")
                
                print("Update Successfuly!!")
@@ -84,6 +94,8 @@ while True:
 
             else:
                 print("student not found!!")
+
+    #----------DELETE----------#
 
     elif choice == "4":
 
@@ -100,7 +112,7 @@ while True:
             else:
                 print("Student not found!")
 
-
+    #----------SUBJECTS----------#
     elif choice == "5":
 
         print("\n--- Display Subjects Offered ---")
@@ -115,9 +127,16 @@ while True:
 
         print("Subjects offered:" , ", ".join(all_subjects))
 
+    #----------EXIT-----------#
+    
     elif choice == "6":
-        print("Exiting program. Goodbye!")
+        
+        print("Thsnk you for using Student Data Organizer.")
+
+        print("Goodbye!!")
         break
+
+    #----------INVALID----------#
     
     else:
 
